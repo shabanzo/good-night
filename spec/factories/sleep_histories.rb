@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :sleep_history do
-    clock_in_time { "2023-03-21 17:25:12" }
-    clock_out_time { "2023-03-21 17:25:12" }
-    duration_minutes { 1 }
+  factory :incomplete_sleep_history, class: 'SleepHistory' do
+    association :user
+    clock_in_time { DateTime.current.beginning_of_day }
   end
 end
