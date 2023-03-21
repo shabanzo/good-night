@@ -196,6 +196,7 @@ GEM
     ruby-progressbar (1.13.0)
     sqlite3 (1.6.1-x86_64-darwin)
     thor (1.2.1)
+    timecop (0.9.6)
     timeout (0.3.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -221,6 +222,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sqlite3 (~> 1.4)
+  timecop
   tzinfo-data
 
 RUBY VERSION
