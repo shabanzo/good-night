@@ -18,10 +18,10 @@ class SleepHistory
     end
 
     def call
-      # Find user and return failure status it if it's not existed
+      # Find user and return failure status if it's not existed
       return handle_failure(code: 404, error: em_user_not_found) if user.blank?
 
-      # Find incomplete history and return failure status it if it's existed
+      # Find incomplete history and return failure status if it's existed
       return handle_failure(code: 400, error: em_incomplete_history) if incomplete_history_present?
 
       save_sleep_history
