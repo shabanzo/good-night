@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe SleepHistory, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:incomplete_sleep_history) { create_list(:incomplete_sleep_history, 5) }
+
+  describe 'scopes' do
+    it 'returns incomplete sleep history' do
+      expect(described_class.incomplete).to eq(incomplete_sleep_history)
+    end
+  end
 end
