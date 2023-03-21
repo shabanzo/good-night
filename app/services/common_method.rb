@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+module CommonMethod
+  def user
+    User.find(user_id)
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+
+  # Error messages
+  def em_user_not_found
+    "Not found; User not found!"
+  end
+
+  def em_incomplete_history
+    "Bad request; You have incomplete sleep history! Please clock it out first!"
+  end
+
+  def em_failed_to_save(obj)
+    "Failed to save; #{obj.errors.full_messages.join('; ')}"
+  end
+end
