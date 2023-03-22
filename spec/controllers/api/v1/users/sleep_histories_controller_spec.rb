@@ -75,7 +75,7 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
       it 'returns correct error message' do
         post :clock_in, params: { user_id: user.id }, as: :json
 
-        expect(response.body).to eq(failed_response)
+        expect(response.body).to eq(failed_json_response)
       end
     end
   end
