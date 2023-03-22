@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  def clock_in!
+    sleep_histories.create
+  end
+
   def follow(target_user)
     active_relationships.create(followed_id: target_user.id)
   end
