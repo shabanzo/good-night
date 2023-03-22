@@ -28,19 +28,22 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
         # spec/services/sleep_history/clock_in_spec.rb
         # So we only need to ensure the controller returns correct response for success one
         allow(::SleepHistory::ClockIn).to receive(:call).with(user_id: user.id.to_s).and_return(success_result)
+
+        post :clock_in, params: { user_id: user.id }, as: :json
       end
 
       it 'returns 201' do
-        post :clock_in, params: { user_id: user.id }, as: :json
-
         expect(response.status).to eq(201)
       end
 
       it 'returns clocked in times' do
-        post :clock_in, params: { user_id: user.id }, as: :json
-
         parsed_response = JSON.parse response.body
-        expect(parsed_response).to eq(clocked_in_times)
+        expect(parsed_response['data']).to eq(clocked_in_times)
+      end
+
+      it 'returns correct message' do
+        parsed_response = JSON.parse response.body
+        expect(parsed_response['message']).to eq('Congratulations, your clock-in has been recorded successfully!')
       end
     end
 
