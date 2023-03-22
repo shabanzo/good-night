@@ -8,8 +8,8 @@ module Api
           clock_in_klass = ::SleepHistory::ClockIn.call(user_id: params[:user_id])
           if clock_in_klass.success?
             render json: {
-              message: 'Congratulations, your clock-in has been recorded successfully!',
-              data:    clock_in_klass.success
+              message: clock_in_klass.success[:message],
+              data:    clock_in_klass.success[:data]
             }, status: :created
           else
             render json: {

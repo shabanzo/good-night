@@ -28,7 +28,10 @@ class SleepHistory
 
       # I don't think that return all the records would be good
       # So I limit it to last 10 rows only descending by created_at for performance-wise
-      handle_success(user.sleep_histories.order(created_at: :desc).limit(10).pluck(:clock_in_time))
+      handle_success(
+        message: 'Congratulations, your clock-in has been recorded successfully!',
+        data:    user.sleep_histories.order(created_at: :desc).limit(10).pluck(:clock_in_time)
+      )
     end
 
     private def incomplete_history_present?

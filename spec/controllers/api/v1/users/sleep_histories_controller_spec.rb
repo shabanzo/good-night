@@ -19,7 +19,10 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
       let(:success_result) do
         OpenStruct.new(
           success?: true,
-          success:  clocked_in_times
+          success:  {
+            message: 'Congratulations, your clock-in has been recorded successfully!',
+            data:    clocked_in_times
+          }
         )
       end
 
@@ -37,12 +40,12 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
       end
 
       it 'returns clocked in times' do
-        parsed_response = JSON.parse response.body
+        parsed_response = response.parsed_body
         expect(parsed_response['data']).to eq(clocked_in_times)
       end
 
       it 'returns correct message' do
-        parsed_response = JSON.parse response.body
+        parsed_response = response.parsed_body
         expect(parsed_response['message']).to eq('Congratulations, your clock-in has been recorded successfully!')
       end
     end
@@ -66,7 +69,7 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
         # Mock clock in service to return failed result since the actual scenarios already handled here:
         # spec/services/sleep_history/clock_in_spec.rb
         # So we only need to ensure the controller returns correct response for failed one
-        allow(::SleepHistory::ClockIn).to receive(:call).with(user_id: user.id.to_s).and_return(failed_result)
+        allow(SleepHistory::ClockIn).to receive(:call).with(user_id: user.id.to_s).and_return(failed_result)
 
         post :clock_in, params: { user_id: user.id }, as: :json
       end
