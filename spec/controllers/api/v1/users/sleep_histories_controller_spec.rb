@@ -67,17 +67,15 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
         # spec/services/sleep_history/clock_in_spec.rb
         # So we only need to ensure the controller returns correct response for failed one
         allow(::SleepHistory::ClockIn).to receive(:call).with(user_id: user.id.to_s).and_return(failed_result)
+
+        post :clock_in, params: { user_id: user.id }, as: :json
       end
 
       it 'returns correct error code' do
-        post :clock_in, params: { user_id: user.id }, as: :json
-
         expect(response.status).to eq(failed_result.failure[:code])
       end
 
       it 'returns correct error message' do
-        post :clock_in, params: { user_id: user.id }, as: :json
-
         expect(response.body).to eq(failed_json_response)
       end
     end
