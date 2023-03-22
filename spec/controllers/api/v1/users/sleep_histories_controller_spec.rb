@@ -1,0 +1,82 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
+  include CommonMethod
+
+  let(:user) { create(:user) }
+  let(:incomplete_sleep_history) { create(:incomplete_sleep_history, user: user) }
+
+  describe '#clock_in' do
+    context 'when the klass returns success result' do
+      let(:sleep_histories) { create_list(:sleep_history, 15, user: user) }
+
+      let(:clocked_in_times) do
+        user.sleep_histories.order(created_at: :desc).limit(10).pluck(:clock_in_time)
+      end
+
+      let(:success_result) do
+        OpenStruct.new(
+          success?: true,
+          success:  clocked_in_times
+        )
+      end
+
+      before do
+        # Mock clock in service to return success request since the actual scenarios already handled here:
+        # spec/services/sleep_history/clock_in_spec.rb
+        # So we only need to ensure the controller returns correct response for success one
+        allow(::SleepHistory::ClockIn).to receive(:call).with(user_id: user.id.to_s).and_return(success_result)
+      end
+
+      it 'returns 201' do
+        post :clock_in, params: { user_id: user.id }, as: :json
+
+        expect(response.status).to eq(201)
+      end
+
+      it 'returns clocked in times' do
+        post :clock_in, params: { user_id: user.id }, as: :json
+
+        parsed_response = JSON.parse response.body
+        expect(parsed_response).to eq(clocked_in_times)
+      end
+    end
+
+    context 'when the klass returns failed result' do
+      let(:failed_result) do
+        OpenStruct.new(
+          failure?: true,
+          failure:  {
+            code:  400,
+            error: em_user_not_found
+          }
+        )
+      end
+
+      let(:failed_json_response) do
+        { message: failed_result.failure[:error] }.to_json
+      end
+
+      before do
+        # Mock clock in service to return failed result since the actual scenarios already handled here:
+        # spec/services/sleep_history/clock_in_spec.rb
+        # So we only need to ensure the controller returns correct response for failed one
+        allow(::SleepHistory::ClockIn).to receive(:call).with(user_id: user.id.to_s).and_return(failed_result)
+      end
+
+      it 'returns correct error code' do
+        post :clock_in, params: { user_id: user.id }, as: :json
+
+        expect(response.status).to eq(failed_result.failure[:code])
+      end
+
+      it 'returns correct error message' do
+        post :clock_in, params: { user_id: user.id }, as: :json
+
+        expect(response.body).to eq(failed_response)
+      end
+    end
+  end
+end
