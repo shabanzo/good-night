@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_21_102512) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_030614) do
   create_table "sleep_histories", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.datetime "clock_in_time"
+    t.datetime "clock_in_time", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "clock_out_time"
     t.integer "duration_minutes"
     t.datetime "created_at", null: false

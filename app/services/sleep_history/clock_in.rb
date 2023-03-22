@@ -33,7 +33,7 @@ class SleepHistory
 
     private def save_sleep_history
       # Build the history with the current time
-      sleep_history = user.sleep_histories.build(clock_in_time: Time.current)
+      sleep_history = user.sleep_histories.build
 
       # Save it to database
       if sleep_history.save
