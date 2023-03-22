@@ -36,7 +36,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_031315) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "relationships", "followeds"
-  add_foreign_key "relationships", "followers"
-  add_foreign_key "sleep_histories", "users"
 end
