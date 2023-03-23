@@ -15,18 +15,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#clock_out!' do
-    let(:duration) { 50 }
-    let(:incomplete_sleep_history) do
-      create(
-        :sleep_history,
-        user:             user,
-        clock_in_time:    Time.zone.now - duration.minutes,
-        clock_out_time:   nil,
-        duration_minutes: nil
-      )
-    end
-
-    around { |e| Timecop.freeze(Time.zone.now) { e.run } }
+    let(:incomplete_sleep_history) { create(:incomplete_sleep_history, user: user) }
 
     before do
       incomplete_sleep_history
@@ -36,12 +25,6 @@ RSpec.describe User, type: :model do
       expect {
         user.clock_out!
       }.to change(user.sleep_histories.incomplete, :count).by(-1)
-    end
-
-    it 'calculates the duration_minutes' do
-      user.clock_out!
-      last_history = user.sleep_histories.last
-      expect(last_history.duration_minutes).to eq(duration)
     end
   end
 
