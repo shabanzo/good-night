@@ -30,6 +30,10 @@ module ResultHandler
     "Bad request; You have incomplete sleep history! Please clock it out first!"
   end
 
+  def em_clocked_in_history
+    "Bad request; You do not have clocked in sleep history! Please clock in first!"
+  end
+
   def em_already_following
     "Bad request; You are already following the target user!"
   end
@@ -45,6 +49,10 @@ module ResultHandler
   # Success messages
   def sm_clock_in
     'Congratulations, your clock-in has been recorded successfully!'
+  end
+
+  def sm_clock_out
+    'Congratulations, your clock-out has been recorded successfully!'
   end
 
   def sm_follow
