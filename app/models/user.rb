@@ -12,6 +12,10 @@ class User < ApplicationRecord
     sleep_histories.create
   end
 
+  def clock_out!
+    sleep_histories.incomplete.last.update clock_out_time: DateTime.current
+  end
+
   def follow(target_user)
     active_relationships.create(followed_id: target_user.id)
   end
