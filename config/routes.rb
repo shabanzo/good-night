@@ -8,6 +8,7 @@ Rails.application.routes.draw do
           collection do
             post :clock_in, action: :clock_in, controller: 'users/sleep_histories'
             patch :clock_out, action: :clock_out, controller: 'users/sleep_histories'
+            get :following, action: :following, controller: 'users/sleep_histories'
           end
         end
         resources :relationships do

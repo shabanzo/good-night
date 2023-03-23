@@ -37,6 +37,28 @@ module Api
         private def clock_out_klass
           @clock_out_klass ||= ::SleepHistory::ClockOut.call(user_id: params[:user_id])
         end
+
+        def following
+          render json: following_records, each_serializer: SleepHistorySerializer, status: :ok
+        end
+
+        private def user
+          @user ||= User.find(params[:user_id])
+        end
+
+        private def following_records
+          # Pagination for performance-wise
+          @following_records ||= user.past_week_following_sleep_histories.
+                                 page(page).per(per_page)
+        end
+
+        private def page
+          params[:page] || 1
+        end
+
+        private def per_page
+          params[:per_page] || 10
+        end
       end
     end
   end
