@@ -48,6 +48,28 @@ RSpec.describe ::Relationship::Follow do
     end
   end
 
+  context 'when the user exists and the target user exists but the user already following the targeted user' do
+    let(:follow_klass) { described_class.call(user_id: user.id, target_user_id: target_user.id) }
+    let(:relationship) { create(:relationship, follower: user, followed: target_user) }
+
+    before do
+      user
+      relationship
+    end
+
+    it 'returns failure = true' do
+      expect(follow_klass).to be_failure
+    end
+
+    it 'returns code = 400' do
+      expect(follow_klass.failure[:code]).to eq(400)
+    end
+
+    it 'returns proper message' do
+      expect(follow_klass.failure[:error]).to eq(em_already_following)
+    end
+  end
+
   context 'when the user exists and the target user exists and no duplicates' do
     let(:follow_klass) { described_class.call(user_id: user.id, target_user_id: target_user.id) }
 
