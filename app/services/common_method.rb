@@ -30,6 +30,10 @@ module CommonMethod
     "Bad request; You are already following the target user!"
   end
 
+  def em_already_unfollowed
+    "Bad request; You've already unfollowed the target user!"
+  end
+
   def em_failed_to_save(obj)
     "Failed to save; #{obj.errors.full_messages.join('; ')}"
   end
@@ -41,5 +45,9 @@ module CommonMethod
 
   def sm_follow
     'You are now following this user!'
+  end
+
+  def sm_unfollow
+    'You are now unfollow this user!'
   end
 end
