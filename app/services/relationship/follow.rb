@@ -28,7 +28,11 @@ class Relationship
       # If we put it also in model too, and the model is getting bigger and there's an issue so we have to check multiple files
       return handle_failure(code: 400, error: em_already_following) if user.following?(target_user)
 
-      handle_success(user.follow(target_user))
+      user.follow(target_user)
+
+      handle_success(
+        message: 'You are now following this user!'
+      )
     end
   end
 end

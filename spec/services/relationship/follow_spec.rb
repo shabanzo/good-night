@@ -59,5 +59,9 @@ RSpec.describe ::Relationship::Follow do
     it 'returns success = true' do
       expect(follow_klass).to be_success
     end
+
+    it 'returns proper message' do
+      expect(follow_klass.success[:message]).to eq('You are now following this user!')
+    end
   end
 end
