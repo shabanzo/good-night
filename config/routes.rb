@@ -9,6 +9,11 @@ Rails.application.routes.draw do
             post :clock_in, action: :clock_in, controller: 'users/sleep_histories'
           end
         end
+        resources :relationships do
+          collection do
+            post :follow, action: :follow, controller: 'users/relationships'
+          end
+        end
       end
     end
   end
