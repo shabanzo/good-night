@@ -67,4 +67,39 @@ RSpec.describe User, type: :model do
       expect(target_user.followers).not_to be_include(user)
     end
   end
+
+  describe '#past_week_following_sleep_histories' do
+    let(:target_user_1) { create(:user) }
+
+    let(:past_week_sleep_history_1) do
+      create(
+        :sleep_history,
+        user:             target_user,
+        clock_in_time:    DateTime.current - 5.days,
+        duration_minutes: 5
+      )
+    end
+
+    let(:past_week_sleep_history_2) do
+      create(
+        :sleep_history,
+        user:             target_user_1,
+        clock_in_time:    DateTime.current - 3.days,
+        duration_minutes: 10
+      )
+    end
+
+    before do
+      user.follow(target_user)
+      user.follow(target_user_1)
+      past_week_sleep_history_1
+      past_week_sleep_history_2
+    end
+
+    it 'returns past week sleep histories with right order' do
+      expect(user.past_week_following_sleep_histories).to eq(
+        [past_week_sleep_history_1, past_week_sleep_history_2]
+      )
+    end
+  end
 end
