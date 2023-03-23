@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
-  include CommonMethod
+  include ResultHandler
 
   let(:user) { create(:user) }
   let(:incomplete_sleep_history) { create(:incomplete_sleep_history, user: user) }

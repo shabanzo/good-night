@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ::Relationship::Unfollow do
-  include CommonMethod
+  include ResultHandler
 
   let(:user) { create(:user) }
   let(:target_user) { create(:user) }

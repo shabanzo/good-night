@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ::SleepHistory::ClockIn do
-  include CommonMethod
+  include ResultHandler
   let(:user) { create(:user) }
   let(:incomplete_sleep_history) { create(:incomplete_sleep_history, user: user) }
 
