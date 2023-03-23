@@ -31,7 +31,7 @@ class Relationship
       user.follow(target_user)
 
       handle_success(
-        message: 'You are now following this user!'
+        message: sm_follow
       )
     end
   end

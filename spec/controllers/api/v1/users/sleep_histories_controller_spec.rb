@@ -20,7 +20,7 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
         OpenStruct.new(
           success?: true,
           success:  {
-            message: 'Congratulations, your clock-in has been recorded successfully!',
+            message: sm_clock_in,
             data:    clocked_in_times
           }
         )
@@ -46,7 +46,7 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
 
       it 'returns correct message' do
         parsed_response = response.parsed_body
-        expect(parsed_response['message']).to eq('Congratulations, your clock-in has been recorded successfully!')
+        expect(parsed_response['message']).to eq(sm_clock_in)
       end
     end
 

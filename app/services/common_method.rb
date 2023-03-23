@@ -33,4 +33,13 @@ module CommonMethod
   def em_failed_to_save(obj)
     "Failed to save; #{obj.errors.full_messages.join('; ')}"
   end
+
+  # Success messages
+  def sm_clock_in
+    'Congratulations, your clock-in has been recorded successfully!'
+  end
+
+  def sm_follow
+    'You are now following this user!'
+  end
 end

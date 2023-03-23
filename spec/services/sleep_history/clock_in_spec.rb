@@ -58,7 +58,7 @@ RSpec.describe ::SleepHistory::ClockIn do
     end
 
     it 'returns proper message' do
-      expect(clock_in_klass.success[:message]).to eq('Congratulations, your clock-in has been recorded successfully!')
+      expect(clock_in_klass.success[:message]).to eq(sm_clock_in)
     end
 
     it 'returns max 10 rows only' do
