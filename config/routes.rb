@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         resources :relationships do
           collection do
             post :follow, action: :follow, controller: 'users/relationships'
+            post :unfollow, action: :unfollow, controller: 'users/relationships'
           end
         end
       end

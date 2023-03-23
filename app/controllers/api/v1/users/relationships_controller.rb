@@ -18,6 +18,21 @@ module Api
             }, status: follow_klass.failure[:code]
           end
         end
+
+        def unfollow
+          unfollow_klass = ::Relationship::Unfollow.call(
+            user_id: params[:user_id], target_user_id: params[:target_user_id]
+          )
+          if unfollow_klass.success?
+            render json: {
+              message: unfollow_klass.success[:message]
+            }, status: :ok
+          else
+            render json: {
+              message: unfollow_klass.failure[:error]
+            }, status: unfollow_klass.failure[:code]
+          end
+        end
       end
     end
   end
