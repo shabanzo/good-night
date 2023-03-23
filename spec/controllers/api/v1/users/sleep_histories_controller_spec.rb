@@ -101,7 +101,7 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
         # So we only need to ensure the controller returns correct response for success one
         allow(::SleepHistory::ClockOut).to receive(:call).with(user_id: user.id.to_s).and_return(success_result)
 
-        post :clock_out, params: { user_id: user.id }, as: :json
+        patch :clock_out, params: { user_id: user.id }, as: :json
       end
 
       it 'returns 200' do
@@ -135,7 +135,7 @@ describe ::Api::V1::Users::SleepHistoriesController, type: :controller do
         # So we only need to ensure the controller returns correct response for failed one
         allow(SleepHistory::ClockOut).to receive(:call).with(user_id: user.id.to_s).and_return(failed_result)
 
-        post :clock_out, params: { user_id: user.id }, as: :json
+        patch :clock_out, params: { user_id: user.id }, as: :json
       end
 
       it 'returns correct error code' do

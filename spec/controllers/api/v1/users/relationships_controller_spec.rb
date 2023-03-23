@@ -91,7 +91,7 @@ describe ::Api::V1::Users::RelationshipsController, type: :controller do
         allow(::Relationship::Unfollow).to receive(:call).
           with(user_id: user.id.to_s, target_user_id: target_user.id).and_return(success_result)
 
-        post :unfollow, params: { user_id: user.id, target_user_id: target_user.id }, as: :json
+        delete :unfollow, params: { user_id: user.id, target_user_id: target_user.id }, as: :json
       end
 
       it 'returns 200' do
@@ -125,7 +125,7 @@ describe ::Api::V1::Users::RelationshipsController, type: :controller do
         allow(::Relationship::Unfollow).to receive(:call).
           with(user_id: user.id.to_s, target_user_id: target_user.id).and_return(failed_result)
 
-        post :unfollow, params: { user_id: user.id, target_user_id: target_user.id }, as: :json
+        delete :unfollow, params: { user_id: user.id, target_user_id: target_user.id }, as: :json
       end
 
       it 'returns correct error code' do
