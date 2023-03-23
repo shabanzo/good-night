@@ -5,9 +5,6 @@ module Api
     module Users
       class RelationshipsController < ApplicationController
         def follow
-          follow_klass = ::Relationship::Follow.call(
-            user_id: params[:user_id], target_user_id: params[:target_user_id]
-          )
           if follow_klass.success?
             render json: {
               message: follow_klass.success[:message]
@@ -19,10 +16,13 @@ module Api
           end
         end
 
-        def unfollow
-          unfollow_klass = ::Relationship::Unfollow.call(
+        private def follow_klass
+          @follow_klass ||= ::Relationship::Follow.call(
             user_id: params[:user_id], target_user_id: params[:target_user_id]
           )
+        end
+
+        def unfollow
           if unfollow_klass.success?
             render json: {
               message: unfollow_klass.success[:message]
@@ -32,6 +32,12 @@ module Api
               message: unfollow_klass.failure[:error]
             }, status: unfollow_klass.failure[:code]
           end
+        end
+
+        private def unfollow_klass
+          @unfollow_klass ||= ::Relationship::Unfollow.call(
+            user_id: params[:user_id], target_user_id: params[:target_user_id]
+          )
         end
       end
     end
