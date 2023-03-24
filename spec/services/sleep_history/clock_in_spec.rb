@@ -40,7 +40,7 @@ RSpec.describe ::SleepHistory::ClockIn do
     end
 
     it 'returns proper message' do
-      expect(clock_in_klass.failure[:error]).to eq(em_incomplete_history)
+      expect(clock_in_klass.failure[:error]).to eq(em_incomplete_history_exists)
     end
   end
 

@@ -30,4 +30,26 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  user:
+    errors:
+      not_found: "Not found; User not found!"
+      target_user_not_found: "Not found; Target user not found!"
+    clock_in:
+      success: "Congratulations, your clock-in has been recorded successfully!"
+      errors:
+        incomplete_history_exists: "Bad request; You have incomplete sleep history! Please clock it out first!"
+    clock_out:
+      success: "Congratulations, your clock-out has been recorded successfully!"
+      errors:
+        incomplete_history_does_not_exist: "Bad request; You do not have clocked in sleep history! Please clock in first!"
+    follow:
+      success: "You are now following this user!"
+      errors:
+        already_following: "Bad request; You are already following the target user!"
+    unfollow:
+      success: "You are now unfollow this user!"
+      errors:
+        already_unfollowed: "Bad request; You've already unfollowed the target user!"
+
+
+

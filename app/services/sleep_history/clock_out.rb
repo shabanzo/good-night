@@ -22,7 +22,7 @@ class SleepHistory
       return handle_failure(code: 404, error: em_user_not_found) if user.blank?
 
       # Find incomplete history and return failure status if it's not existed
-      return handle_failure(code: 400, error: em_clocked_in_history) unless incomplete_history_present?
+      return handle_failure(code: 400, error: em_incomplete_history_does_not_exist) unless incomplete_history_present?
 
       user.clock_out!
 

@@ -17,49 +17,50 @@ module ResultHandler
     )
   end
 
-  # Error messages
+  # === Error messages ===
+  # User
   def em_user_not_found
-    "Not found; User not found!"
+    I18n.t('user.errors.not_found')
   end
 
   def em_target_user_not_found
-    "Not found; Target user not found!"
+    I18n.t('user.errors.target_user_not_found')
   end
 
-  def em_incomplete_history
-    "Bad request; You have incomplete sleep history! Please clock it out first!"
+  # Clock In / Clock Out
+  def em_incomplete_history_exists
+    I18n.t('user.clock_in.errors.incomplete_history_exists')
   end
 
-  def em_clocked_in_history
-    "Bad request; You do not have clocked in sleep history! Please clock in first!"
+  def em_incomplete_history_does_not_exist
+    I18n.t('user.clock_out.errors.incomplete_history_does_not_exist')
   end
 
+  # Follow / Unfollow
   def em_already_following
-    "Bad request; You are already following the target user!"
+    I18n.t('user.follow.errors.already_following')
   end
 
   def em_already_unfollowed
-    "Bad request; You've already unfollowed the target user!"
+    I18n.t('user.unfollow.errors.already_unfollowed')
   end
 
-  def em_failed_to_save(obj)
-    "Failed to save; #{obj.errors.full_messages.join('; ')}"
-  end
-
-  # Success messages
+  # === Success messages ===
+  # Clock In / Clock Out
   def sm_clock_in
-    'Congratulations, your clock-in has been recorded successfully!'
+    I18n.t('user.clock_in.success')
   end
 
   def sm_clock_out
-    'Congratulations, your clock-out has been recorded successfully!'
+    I18n.t('user.clock_out.success')
   end
 
+  # Follow / Unfollow
   def sm_follow
-    'You are now following this user!'
+    I18n.t('user.follow.success')
   end
 
   def sm_unfollow
-    'You are now unfollow this user!'
+    I18n.t('user.unfollow.success')
   end
 end
