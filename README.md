@@ -32,9 +32,9 @@ rails s
 
 ### Clock In API
 
-API for recording the clocked-in data. The initial sleep history row will be created within this API.
-[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L7-L19)
-[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_in.rb)
+API for recording the clocked-in data. The initial sleep history row will be created within this API.<br />
+[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L7-L19)<br />
+[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_in.rb)<br />
 
 ```
 POST /api/v1/users/:user_id/sleep_histories/clock_in
@@ -90,9 +90,9 @@ POST /api/v1/users/1/sleep_histories/clock_in
 
 ### Clock Out API
 
-API for recording the clocked-out time. The initial sleep history that created using clock in API will be updated and the record will have clocked-out time and automatically calculates the duration.
-[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L25-L37)
-[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_out.rb)
+API for recording the clocked-out time. The initial sleep history that created using clock in API will be updated and the record will have clocked-out time and automatically calculates the duration.<br />
+[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L25-L37)<br />
+[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_out.rb)<br />
 
 ```
 PATCH /api/v1/users/:user_id/sleep_histories/clock_out
@@ -135,9 +135,9 @@ POST /api/v1/users/1/sleep_histories/clock_in
 
 ### Follow API
 
-API for following the user. The relationship record will be created within this API.
-[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L7-L18)
-[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/follow.rb)
+API for following the user. The relationship record will be created within this API.<br />
+[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L7-L18)<br />
+[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/follow.rb)<br />
 
 ```
 POST /api/v1/users/:user_id/relationships/follow
@@ -185,9 +185,9 @@ POST /api/v1/users/1/relationships/follow
 
 ### Unfollow API
 
-API for unfollowing the user. The relationship record will be deleted within this API.
-[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L26-L37)
-[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/unfollow.rb)
+API for unfollowing the user. The relationship record will be deleted within this API.<br />
+[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L26-L37)<br />
+[link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/unfollow.rb)<br />
 
 ```
 DELETE /api/v1/users/:user_id/relationships/unfollow
@@ -235,8 +235,8 @@ DELETE /api/v1/users/1/relationships/unfollow
 
 ### Following API
 
-API for returning all following's sleep histories.
-[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L43-L46)
+API for returning all following's sleep histories.<br />
+[link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L43-L46)<br />
 
 ```
 GET /api/v1/users/:user_id/sleep_histories/following
