@@ -151,6 +151,45 @@ POST /api/v1/users/1/sleep_histories/clock_in
 | 404        | Not found; User not found!                                                          |
 | 400        | Bad request; The user doesn't have clocked-in sleep history, please clock in first! |
 
+### Users API
+
+API for returning all users to support Follow and Unfollow API.
+
+#### Source code
+
+- [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users_controller.rb#L7-L14)
+
+```
+GET /api/v1/users
+```
+
+| Request Parameters | Type    | Descriptions                   |
+| ------------------ | ------- | ------------------------------ |
+| page               | Integer | The current page.              |
+| per_page           | Integer | How many row of data per page. |
+
+#### Request parameters example:
+
+```
+GET /api/v1/users/1/users?page=1&per_page=10
+```
+
+#### Success response (status: 200):
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Syaban"
+  }
+]
+```
+
+| Response Attributes | Type    | Descriptions      |
+| ------------------- | ------- | ----------------- |
+| id                  | Integer | The current page. |
+| name                | String  | User name.        |
+
 ### Follow API
 
 API for following the user. The relationship record will be created within this API.
