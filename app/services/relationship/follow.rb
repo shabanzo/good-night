@@ -23,7 +23,7 @@ class Relationship
       return handle_failure(code: 404, error: em_user_not_found) if user.blank?
       return handle_failure(code: 404, error: em_target_user_not_found) if target_user.blank?
 
-      # Prevent the users following themself
+      # Prevent the users follow themself
       return handle_failure(code: 400, error: em_follow_self) if user == target_user
 
       # Prevent duplicate records
