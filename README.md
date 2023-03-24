@@ -3,15 +3,16 @@
 A simple API-based application to let users track when do they go to bed and when do they wake up.
 
 ## Contents
+
 1. [Requirements for the MVP](https://github.com/shabanzo/good-night/blob/master/README.md#requirements-for-the-mvp)
 2. [Improvements](https://github.com/shabanzo/good-night/blob/master/README.md#improvements)
 3. [Getting Started](https://github.com/shabanzo/good-night/blob/master/README.md#getting-started)
 4. [API Documentation](https://github.com/shabanzo/good-night/blob/master/README.md#api-documentation)
-   * [Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-in-api)
-   * [Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-out-api)
-   * [Follow API](https://github.com/shabanzo/good-night/blob/master/README.md#follow-api)
-   * [Unfollow API](https://github.com/shabanzo/good-night/blob/master/README.md#unfollow-api)
-   * [Following API](https://github.com/shabanzo/good-night/blob/master/README.md#following-api)
+   - [Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-in-api)
+   - [Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-out-api)
+   - [Follow API](https://github.com/shabanzo/good-night/blob/master/README.md#follow-api)
+   - [Unfollow API](https://github.com/shabanzo/good-night/blob/master/README.md#unfollow-api)
+   - [Following API](https://github.com/shabanzo/good-night/blob/master/README.md#following-api)
 
 ## Requirements for the MVP
 
@@ -46,8 +47,9 @@ rails s
 API for recording the clocked-in data. The initial sleep history row will be created within this API.
 
 #### Source code
-* [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L7-L19)
-* [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_in.rb)
+
+- [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L7-L19)
+- [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_in.rb)
 
 ```
 POST /api/v1/users/:user_id/sleep_histories/clock_in
@@ -65,30 +67,30 @@ POST /api/v1/users/1/sleep_histories/clock_in
 
 #### Success response example (status: 201):
 
-```
-  {
-    "message": "Congratulations, your clock-in has been recorded successfully!",
-    "data": [
-      "2023-02-22T13:39:06.000Z",
-      "2023-03-07T13:41:56.000Z",
-      "2023-03-11T11:16:03.000Z",
-      "2023-03-09T15:17:48.000Z",
-      "2023-02-25T13:26:31.000Z",
-      "2023-02-27T14:42:59.000Z",
-      "2023-03-08T11:53:34.000Z",
-      "2023-03-01T14:36:23.000Z",
-      "2023-03-03T15:14:42.000Z",
-      "2023-03-18T15:37:43.000Z"
-    ]
-  }
+```json
+{
+  "message": "Congratulations, your clock-in has been recorded successfully!",
+  "data": [
+    "2023-02-22T13:39:06.000Z",
+    "2023-03-07T13:41:56.000Z",
+    "2023-03-11T11:16:03.000Z",
+    "2023-03-09T15:17:48.000Z",
+    "2023-02-25T13:26:31.000Z",
+    "2023-02-27T14:42:59.000Z",
+    "2023-03-08T11:53:34.000Z",
+    "2023-03-01T14:36:23.000Z",
+    "2023-03-03T15:14:42.000Z",
+    "2023-03-18T15:37:43.000Z"
+  ]
+}
 ```
 
 #### Failed response example (status: 400):
 
-```
-  {
-    "message": "Bad request; You have incomplete sleep history! Please clock it out first!"
-  }
+```json
+{
+  "message": "Bad request; You have incomplete sleep history! Please clock it out first!"
+}
 ```
 
 | Response Attributes | Type            | Descriptions                                                |
@@ -106,8 +108,9 @@ POST /api/v1/users/1/sleep_histories/clock_in
 API for recording the clocked-out time. The initial sleep history that created using clock in API will be updated and the record will have clocked-out time and automatically calculates the duration.
 
 #### Source code
-* [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L25-L37)
-* [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_out.rb)
+
+- [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L25-L37)
+- [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/sleep_history/clock_out.rb)
 
 ```
 PATCH /api/v1/users/:user_id/sleep_histories/clock_out
@@ -125,18 +128,18 @@ POST /api/v1/users/1/sleep_histories/clock_in
 
 #### Success response example (status: 200):
 
-```
-  {
-    "message": "Congratulations, your clock-out has been recorded successfully!"
-  }
+```json
+{
+  "message": "Congratulations, your clock-out has been recorded successfully!"
+}
 ```
 
 #### Failed response example (status: 400):
 
-```
-  {
-    "message": "Bad request; You do not have clocked in sleep history! Please clock in first!"
-  }
+```json
+{
+  "message": "Bad request; You do not have clocked in sleep history! Please clock in first!"
+}
 ```
 
 | Response Attributes | Type   | Descriptions                                                |
@@ -153,8 +156,9 @@ POST /api/v1/users/1/sleep_histories/clock_in
 API for following the user. The relationship record will be created within this API.
 
 #### Source code
-* [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L7-L18)
-* [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/follow.rb)
+
+- [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L7-L18)
+- [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/follow.rb)
 
 ```
 POST /api/v1/users/:user_id/relationships/follow
@@ -177,18 +181,18 @@ POST /api/v1/users/1/relationships/follow
 
 #### Success response example (status: 200):
 
-```
-  {
-    "message": "You are now following this user!"
-  }
+```json
+{
+  "message": "You are now following this user!"
+}
 ```
 
 #### Failed response example (status: 400):
 
-```
-  {
-    "message": "Bad request; You are already following the target user!"
-  }
+```json
+{
+  "message": "Bad request; You are already following the target user!"
+}
 ```
 
 | Response Attributes | Type   | Descriptions                                                |
@@ -205,8 +209,9 @@ POST /api/v1/users/1/relationships/follow
 API for unfollowing the user. The relationship record will be deleted within this API.
 
 #### Source code
-* [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L26-L37)
-* [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/unfollow.rb)
+
+- [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/relationships_controller.rb#L26-L37)
+- [link to the class service](https://github.com/shabanzo/good-night/blob/master/app/services/relationship/unfollow.rb)
 
 ```
 DELETE /api/v1/users/:user_id/relationships/unfollow
@@ -229,18 +234,18 @@ DELETE /api/v1/users/1/relationships/unfollow
 
 #### Success response (status: 200):
 
-```
-  {
-    "message": "You are now unfollow this user!"
-  }
+```json
+{
+  "message": "You are now unfollow this user!"
+}
 ```
 
 #### Failed response (status: 400):
 
-```
-  {
-    "message": "Bad request; You've already unfollowed the target user!"
-  }
+```json
+{
+  "message": "Bad request; You've already unfollowed the target user!"
+}
 ```
 
 | Response Attributes | Type   | Descriptions                                                |
@@ -257,7 +262,8 @@ DELETE /api/v1/users/1/relationships/unfollow
 API for returning all following's sleep histories.
 
 #### Source code
-* [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L43-L46)
+
+- [link to the controller](https://github.com/shabanzo/good-night/blob/master/app/controllers/api/v1/users/sleep_histories_controller.rb#L43-L46)
 
 ```
 GET /api/v1/users/:user_id/sleep_histories/following
@@ -276,16 +282,16 @@ GET /api/v1/users/1/sleep_histories/following?page=1&per_page=10
 
 #### Success response (status: 200):
 
-```
-  [
-    {
-      "id": 1,
-      "user_name": "Syaban",
-      "clock_in_time": "2023-02-22T23:00:00.000Z",
-      "clock_out_time": "2023-02-23T08:00:00.000Z",
-      "duration_minutes": 540
-    }
-  ]
+```json
+[
+  {
+    "id": 1,
+    "user_name": "Syaban",
+    "clock_in_time": "2023-02-22T23:00:00.000Z",
+    "clock_out_time": "2023-02-23T08:00:00.000Z",
+    "duration_minutes": 540
+  }
+]
 ```
 
 | Response Attributes | Type     | Descriptions                        |
