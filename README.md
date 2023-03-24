@@ -7,11 +7,11 @@ A simple API-based application to let users track when do they go to bed and whe
 2. [Improvements](https://github.com/shabanzo/good-night/blob/master/README.md#improvements)
 3. [Getting Started](https://github.com/shabanzo/good-night/blob/master/README.md#getting-started)
 4. [API Documentation](https://github.com/shabanzo/good-night/blob/master/README.md#api-documentation)
- * [Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-in-api)
- * [Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-out-api)
- * [Follow API](https://github.com/shabanzo/good-night/blob/master/README.md#follow-api)
- * [Unfollow API](https://github.com/shabanzo/good-night/blob/master/README.md#unfollow-api)
- * [Following API](https://github.com/shabanzo/good-night/blob/master/README.md#following-api)
+   * [Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-in-api)
+   * [Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-out-api)
+   * [Follow API](https://github.com/shabanzo/good-night/blob/master/README.md#follow-api)
+   * [Unfollow API](https://github.com/shabanzo/good-night/blob/master/README.md#unfollow-api)
+   * [Following API](https://github.com/shabanzo/good-night/blob/master/README.md#following-api)
 
 ## Requirements for the MVP
 
