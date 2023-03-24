@@ -199,10 +199,10 @@ POST /api/v1/users/1/relationships/follow
 | ------------------- | ------ | ----------------------------------------------------------- |
 | message             | String | Notice message from the back-end to elaborate the response. |
 
-| Error codes | Descriptions                                                           |
-| ----------- | ---------------------------------------------------------------------- |
-| 404         | Not found; Whether The current user or the targeted user is not found! |
-| 400         | Bad request; You are already following the target user!                |
+| Error codes | Descriptions                                                                                         |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| 404         | Not found; Whether The current user or the targeted user is not found! Or they're following themself |
+| 400         | Bad request; You are already following the target user!                                              |
 
 ### Unfollow API
 
