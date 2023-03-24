@@ -185,10 +185,10 @@ GET /api/v1/users/1/users?page=1&per_page=10
 ]
 ```
 
-| Response Attributes | Type    | Descriptions      |
-| ------------------- | ------- | ----------------- |
-| id                  | Integer | The current page. |
-| name                | String  | User name.        |
+| Response Attributes | Type    | Descriptions |
+| ------------------- | ------- | ------------ |
+| id                  | Integer | User ID      |
+| name                | String  | User name.   |
 
 ### Follow API
 
@@ -335,7 +335,7 @@ GET /api/v1/users/1/sleep_histories/following?page=1&per_page=10
 
 | Response Attributes | Type     | Descriptions                        |
 | ------------------- | -------- | ----------------------------------- |
-| id                  | Integer  | The current page.                   |
+| id                  | Integer  | Sleep history ID.                   |
 | user_name           | String   | How many row of data per page.      |
 | clock_in_time       | DateTime | The time when the user clocked-in.  |
 | clock_out_time      | DateTime | The time when the user clocked-out. |
