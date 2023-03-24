@@ -54,14 +54,6 @@ module Api
           @following_records ||= user.past_week_following_sleep_histories.
                                  page(page).per(per_page)
         end
-
-        private def page
-          params[:page] || 1
-        end
-
-        private def per_page
-          params[:per_page] || 10
-        end
       end
     end
   end
