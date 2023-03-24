@@ -37,6 +37,10 @@ module ResultHandler
   end
 
   # Follow / Unfollow
+  def em_follow_self
+    I18n.t('user.follow.errors.follow_self')
+  end
+
   def em_already_following
     I18n.t('user.follow.errors.already_following')
   end

@@ -23,6 +23,9 @@ class Relationship
       return handle_failure(code: 404, error: em_user_not_found) if user.blank?
       return handle_failure(code: 404, error: em_target_user_not_found) if target_user.blank?
 
+      # Prevent the users following themself
+      return handle_failure(code: 400, error: em_follow_self) if user == target_user
+
       # Prevent duplicate records
       # I put it here instead of a validation in model to put handle all error handler in one place: 'service'
       # If we put it also in model too, and the model is getting bigger and there's an issue so we have to check multiple files

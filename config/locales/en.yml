@@ -45,6 +45,7 @@ en:
     follow:
       success: "You are now following this user!"
       errors:
+        follow_self: "Bad request; You can not follow yourself!"
         already_following: "Bad request; You are already following the target user!"
     unfollow:
       success: "You are now unfollow this user!"
