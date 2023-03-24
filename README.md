@@ -8,18 +8,21 @@ A simple API-based application to let users track when do they go to bed and whe
 2. [Improvements](https://github.com/shabanzo/good-night/blob/master/README.md#improvements)
 3. [Getting Started](https://github.com/shabanzo/good-night/blob/master/README.md#getting-started)
 4. [API Documentation](https://github.com/shabanzo/good-night/blob/master/README.md#api-documentation)
-   - [Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-in-api)
-   - [Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-out-api)
+   - [Sleep Histories - Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#sleep-histories---clock-in-api)
+   - [Sleep Histories - Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#sleep-histories---clock-out-api)
    - [Users API](https://github.com/shabanzo/good-night/blob/master/README.md#users-api)
-   - [Follow API](https://github.com/shabanzo/good-night/blob/master/README.md#follow-api)
-   - [Unfollow API](https://github.com/shabanzo/good-night/blob/master/README.md#unfollow-api)
-   - [Following API](https://github.com/shabanzo/good-night/blob/master/README.md#following-api)
+   - [Relationships - Follow API](https://github.com/shabanzo/good-night/blob/master/README.md#relationships---follow-api)
+   - [Relationships - Unfollow API](https://github.com/shabanzo/good-night/blob/master/README.md#relationships---unfollow-api)
+   - [Sleep Histories - Following API](https://github.com/shabanzo/good-night/blob/master/README.md#sleep-histories---following-api)
 
 ## Requirements for the MVP
 
 1. Clock-in operation, and return all clocked-in times, ordered by created time.
+   - API: Clock in API
 2. Users can follow and unfollow other users.
+   - API: Users API, Follow API, Unfollow API
 3. See the sleep histories over the past week for their friends, ordered by the length of their sleep.
+   - API: Clock out API, Following API
 
 ## Improvements
 
@@ -43,7 +46,7 @@ rails s
 
 ## API Documentation
 
-### Clock In API
+### Sleep Histories - Clock In API
 
 API for recording the clocked-in data. The initial sleep history row will be created within this API.
 
@@ -104,7 +107,7 @@ POST /api/v1/users/1/sleep_histories/clock_in
 | 404        | Not found; User not found!                                                                                             |
 | 400        | Bad request; The user has incomplete sleep history, please clock it out first before create another clocked-in record! |
 
-### Clock Out API
+### Sleep Histories - Clock Out API
 
 API for recording the clocked-out time. The initial sleep history that created using clock in API will be updated and the record will have clocked-out time and automatically calculates the duration.
 
@@ -191,7 +194,7 @@ GET /api/v1/users/1/users?page=1&per_page=10
 | id                  | Integer | User ID      |
 | name                | String  | User name.   |
 
-### Follow API
+### Relationships - Follow API
 
 API for following the user. The relationship record will be created within this API.
 
@@ -244,7 +247,7 @@ POST /api/v1/users/1/relationships/follow
 | 404         | Not found; Whether The current user or the targeted user is not found! Or they're following themself |
 | 400         | Bad request; You are already following the target user!                                              |
 
-### Unfollow API
+### Relationships - Unfollow API
 
 API for unfollowing the user. The relationship record will be deleted within this API.
 
@@ -297,7 +300,7 @@ DELETE /api/v1/users/1/relationships/unfollow
 | 404         | Not found; Whether The current user or the targeted user is not found! |
 | 400         | Bad request; You are already following the target user!                |
 
-### Following API
+### Sleep Histories - Following API
 
 API for returning all following's sleep histories.
 
