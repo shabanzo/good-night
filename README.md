@@ -10,6 +10,7 @@ A simple API-based application to let users track when do they go to bed and whe
 4. [API Documentation](https://github.com/shabanzo/good-night/blob/master/README.md#api-documentation)
    - [Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-in-api)
    - [Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#clock-out-api)
+   - [Users API](https://github.com/shabanzo/good-night/blob/master/README.md#users-api)
    - [Follow API](https://github.com/shabanzo/good-night/blob/master/README.md#follow-api)
    - [Unfollow API](https://github.com/shabanzo/good-night/blob/master/README.md#unfollow-api)
    - [Following API](https://github.com/shabanzo/good-night/blob/master/README.md#following-api)
