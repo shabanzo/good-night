@@ -8,7 +8,7 @@ A simple API-based application to let users track when do they go to bed and whe
 2. Users can follow and unfollow other users.
 3. See the sleep histories over the past week for their friends, ordered by the length of their sleep.
 
-## Improvement
+## Improvements
 
 1. Limit the clocked-in times to 10 latest, ordered by descending created time for performance-wise.
 2. Pagination for sleep histories for performance-wise.
