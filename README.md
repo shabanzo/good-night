@@ -19,11 +19,11 @@ A simple API-based application to let users track when do they go to bed and whe
 ## Requirements for the MVP
 
 1. Clock-in operation, and return all clocked-in times, ordered by created time.
-   - API: Sleep History - Clock in API
+   - API: Sleep History - Clock in API, Sleep History - Clock out API
 2. Users can follow and unfollow other users.
    - API: Users API, Relationship - Follow API, Relationship - Unfollow API
 3. See the sleep histories over the past week for their friends, ordered by the length of their sleep.
-   - API: Sleep History - Clock out API, Sleep History - Following API
+   - API: Sleep History - Following API
 
 ## Improvements
 
