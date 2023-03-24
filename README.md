@@ -7,7 +7,8 @@ A simple API-based application to let users track when do they go to bed and whe
 1. [Requirements for the MVP](https://github.com/shabanzo/good-night/blob/master/README.md#requirements-for-the-mvp)
 2. [Improvements](https://github.com/shabanzo/good-night/blob/master/README.md#improvements)
 3. [Getting Started](https://github.com/shabanzo/good-night/blob/master/README.md#getting-started)
-4. [API Documentation](https://github.com/shabanzo/good-night/blob/master/README.md#api-documentation)
+4. [Testing](https://github.com/shabanzo/good-night/blob/master/README.md#testing)
+5. [API Documentation](https://github.com/shabanzo/good-night/blob/master/README.md#api-documentation)
    - [Sleep Histories - Clock in API](https://github.com/shabanzo/good-night/blob/master/README.md#sleep-histories---clock-in-api)
    - [Sleep Histories - Clock out API](https://github.com/shabanzo/good-night/blob/master/README.md#sleep-histories---clock-out-api)
    - [Users API](https://github.com/shabanzo/good-night/blob/master/README.md#users-api)
@@ -42,6 +43,13 @@ bin/setup
 
 ```
 rails s
+```
+
+## Testing
+
+Simply execute this command:
+```
+rspec
 ```
 
 ## API Documentation
