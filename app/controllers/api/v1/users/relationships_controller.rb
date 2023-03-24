@@ -4,6 +4,7 @@ module Api
   module V1
     module Users
       class RelationshipsController < ApplicationController
+        # POST /api/v1/users/:user_id/relationships/follow
         def follow
           if follow_klass.success?
             render json: {
@@ -22,6 +23,7 @@ module Api
           )
         end
 
+        # DELETE /api/v1/users/:user_id/relationships/unfollow
         def unfollow
           if unfollow_klass.success?
             render json: {

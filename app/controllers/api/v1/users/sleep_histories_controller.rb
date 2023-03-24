@@ -4,6 +4,7 @@ module Api
   module V1
     module Users
       class SleepHistoriesController < ApplicationController
+        # POST /api/v1/users/:user_id/sleep_histories/clock_in
         def clock_in
           if clock_in_klass.success?
             render json: {
@@ -21,6 +22,7 @@ module Api
           @clock_in_klass ||= ::SleepHistory::ClockIn.call(user_id: params[:user_id])
         end
 
+        # PATCH /api/v1/users/:user_id/sleep_histories/clock_out
         def clock_out
           if clock_out_klass.success?
             render json: {
@@ -38,6 +40,7 @@ module Api
           @clock_out_klass ||= ::SleepHistory::ClockOut.call(user_id: params[:user_id])
         end
 
+        # GET /api/v1/users/:user_id/sleep_histories/following
         def following
           render json: following_records, each_serializer: SleepHistorySerializer, status: :ok
         end
