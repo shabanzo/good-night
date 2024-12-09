@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_09_113038) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_09_114315) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followee_id", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_09_113038) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "clock_in_time", "duration_minutes"], name: "idx_on_user_id_clock_in_time_duration_minutes_f4c14bf9c9"
+    t.index ["user_id", "created_at"], name: "index_sleep_histories_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_sleep_histories_on_user_id"
   end
 
