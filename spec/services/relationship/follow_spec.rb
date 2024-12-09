@@ -70,7 +70,7 @@ RSpec.describe Relationship::Follow do
 
   context 'when the user exists and the target user exists but the user already following the targeted user' do
     let(:follow_klass) { described_class.call(user_id: user.id, target_user_id: target_user.id) }
-    let(:relationship) { create(:follow, follower: user, followee: target_user) }
+    let(:relationship) { create(:relationship, follower: user, followee: target_user) }
 
     before do
       user

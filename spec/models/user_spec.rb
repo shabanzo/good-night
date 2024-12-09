@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
     it 'creates a new relationship' do
       expect {
         user.follow(target_user)
-      }.to change(Follow, :count).by(1)
+      }.to change(Relationship, :count).by(1)
     end
 
     it 'creates the correct following relationship for user' do
@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
       it 'does not follow the same user again' do
         expect {
           user.follow(target_user)
-        }.not_to change(Follow, :count)
+        }.not_to change(Relationship, :count)
       end
     end
   end
@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
     it 'destroys the correct relationship' do
       expect {
         user.unfollow(target_user)
-      }.to change(Follow, :count).by(-1)
+      }.to change(Relationship, :count).by(-1)
     end
 
     it 'destroys the correct following relationship for user' do

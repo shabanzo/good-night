@@ -7,7 +7,7 @@ RSpec.describe Relationship::Unfollow do
 
   let(:user) { create(:user) }
   let(:target_user) { create(:user) }
-  let(:relationship) { create(:follow, follower: user, followee: target_user) }
+  let(:relationship) { create(:relationship, follower: user, followee: target_user) }
 
   before do
     target_user

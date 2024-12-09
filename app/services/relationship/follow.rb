@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Relationship
+class Relationship
   class Follow
     include ResultHandler
     include CommonMethod

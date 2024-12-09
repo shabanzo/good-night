@@ -10,6 +10,12 @@ Rails.application.routes.draw do
             patch :clock_out, action: :clock_out, controller: 'users/sleep_histories'
           end
         end
+        resources :relationships do
+          collection do
+            post :follow, action: :follow, controller: 'users/relationships'
+            delete :unfollow, action: :unfollow, controller: 'users/relationships'
+          end
+        end
       end
     end
   end
