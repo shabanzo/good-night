@@ -35,6 +35,15 @@ module ResultHandler
     I18n.t('user.clock_out.errors.incomplete_history_does_not_exist')
   end
 
+  # Follow / Unfollow
+  def em_follow_self
+    I18n.t('user.follow.errors.follow_self')
+  end
+
+  def em_already_following
+    I18n.t('user.follow.errors.already_following')
+  end
+
   # === Success messages ===
   # Clock In / Clock Out
   def sm_clock_in
@@ -43,5 +52,10 @@ module ResultHandler
 
   def sm_clock_out
     I18n.t('user.clock_out.success')
+  end
+
+  # Follow / Unfollow
+  def sm_follow
+    I18n.t('user.follow.success')
   end
 end
