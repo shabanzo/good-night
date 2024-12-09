@@ -36,8 +36,4 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_09_044529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_foreign_key "follows", "followees"
-  add_foreign_key "follows", "followers"
-  add_foreign_key "sleep_histories", "users"
 end
