@@ -85,4 +85,70 @@ describe Api::V1::Users::SleepHistoriesController, type: :controller do
       end
     end
   end
+
+  describe '#clock_out' do
+    context 'when the klass returns success result' do
+      let(:success_result) do
+        Struct.new(:success?, :failure?, :success).new(
+          true,
+          false,
+          {
+            message: sm_clock_out
+          }
+        )
+      end
+
+      before do
+        # Mock clock in service to return success request since the actual scenarios already handled here:
+        # spec/services/sleep_history/clock_in_spec.rb
+        # So we only need to ensure the controller returns correct response for success one
+        allow(SleepHistory::ClockOut).to receive(:call).with(user_id: user.id.to_s).and_return(success_result)
+
+        patch :clock_out, params: { user_id: user.id }, as: :json
+      end
+
+      it 'returns 200' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'returns correct message' do
+        parsed_response = response.parsed_body
+        expect(parsed_response['message']).to eq(sm_clock_out)
+      end
+    end
+
+    context 'when the klass returns failed result' do
+      let(:failed_result) do
+        Struct.new(:success?, :failure?, :failure).new(
+          false,
+          true,
+          {
+            code:  400,
+            error: em_user_not_found
+          }
+        )
+      end
+
+      let(:failed_json_response) do
+        { message: failed_result.failure[:error] }.to_json
+      end
+
+      before do
+        # Mock clock in service to return failed result since the actual scenarios already handled here:
+        # spec/services/sleep_history/clock_in_spec.rb
+        # So we only need to ensure the controller returns correct response for failed one
+        allow(SleepHistory::ClockOut).to receive(:call).with(user_id: user.id.to_s).and_return(failed_result)
+
+        patch :clock_out, params: { user_id: user.id }, as: :json
+      end
+
+      it 'returns correct error code' do
+        expect(response.status).to eq(failed_result.failure[:code])
+      end
+
+      it 'returns correct error message' do
+        expect(response.body).to eq(failed_json_response)
+      end
+    end
+  end
 end
