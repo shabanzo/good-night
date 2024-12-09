@@ -28,4 +28,12 @@ class User < ApplicationRecord
   def following?(target_user)
     following.include?(target_user)
   end
+
+  def past_week_following_sleep_histories
+    following_ids = following.select(:id)
+    SleepHistory.includes(:user).where(
+      users:         { id: following_ids },
+      clock_in_time: 1.week.ago.beginning_of_day..Time.current
+    ).order(:duration_minutes)
+  end
 end
