@@ -44,6 +44,10 @@ module ResultHandler
     I18n.t('user.follow.errors.already_following')
   end
 
+  def em_already_unfollowed
+    I18n.t('user.unfollow.errors.already_unfollowed')
+  end
+
   # === Success messages ===
   # Clock In / Clock Out
   def sm_clock_in
@@ -57,5 +61,9 @@ module ResultHandler
   # Follow / Unfollow
   def sm_follow
     I18n.t('user.follow.success')
+  end
+
+  def sm_unfollow
+    I18n.t('user.unfollow.success')
   end
 end
