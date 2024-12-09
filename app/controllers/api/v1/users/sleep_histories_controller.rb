@@ -29,6 +29,11 @@ class Api::V1::Users::SleepHistoriesController < ApplicationController
     end
   end
 
+  # GET /api/v1/users/:user_id/sleep_histories/following
+  def following
+    render json: following_records, each_serializer: SleepHistorySerializer, status: :ok
+  end
+
   private
 
   def clock_in_klass
@@ -37,5 +42,23 @@ class Api::V1::Users::SleepHistoriesController < ApplicationController
 
   def clock_out_klass
     @clock_out_klass ||= ::SleepHistory::ClockOut.call(user_id: params[:user_id])
+  end
+
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
+  def following_records
+    # Pagination for performance-wise
+    @following_records ||= user.past_week_following_sleep_histories
+                               .page(page).per(per_page)
+  end
+
+  def page
+    params[:page] || 1
+  end
+
+  def per_page
+    params[:per_page] || 10
   end
 end

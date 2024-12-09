@@ -151,4 +151,89 @@ describe Api::V1::Users::SleepHistoriesController, type: :controller do
       end
     end
   end
+
+  describe '#following' do
+    let(:target_user_a) { create(:user) }
+    let(:target_user_b) { create(:user) }
+
+    context 'without pagination' do
+      let(:past_week_sleep_history_a) do
+        create(
+          :sleep_history,
+          user:             target_user_a,
+          clock_in_time:    DateTime.current - 5.days,
+          duration_minutes: 5
+        )
+      end
+
+      let(:past_week_sleep_history_b) do
+        create(
+          :sleep_history,
+          user:             target_user_b,
+          clock_in_time:    DateTime.current - 3.days,
+          duration_minutes: 10
+        )
+      end
+
+      before do
+        user.follow(target_user_a)
+        user.follow(target_user_b)
+        past_week_sleep_history_a
+        past_week_sleep_history_b
+
+        get :following, params: { user_id: user.id }, as: :json
+      end
+
+      it 'returns 200' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns sleep_history in right order' do
+        expect(response.parsed_body).to eq([past_week_sleep_history_a, past_week_sleep_history_b].as_json)
+      end
+    end
+
+    context 'with pagination' do
+      let(:past_week_sleep_histories_a) do
+        create_list(
+          :sleep_history,
+          10,
+          user:             target_user_a,
+          clock_in_time:    DateTime.current - 5.days,
+          duration_minutes: 5
+        )
+      end
+
+      let(:past_week_sleep_histories_b) do
+        create_list(
+          :sleep_history,
+          10,
+          user:             target_user_b,
+          clock_in_time:    DateTime.current - 3.days,
+          duration_minutes: 10
+        )
+      end
+
+      before do
+        user.follow(target_user_a)
+        user.follow(target_user_b)
+        past_week_sleep_histories_a
+        past_week_sleep_histories_b
+
+        get :following, params: { user_id: user.id, page: 1, per_page: 10 }, as: :json
+      end
+
+      it 'returns 200' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns 10 per_page correctly' do
+        expect(response.parsed_body.size).to eq(10)
+      end
+
+      it 'returns correct page with correct order' do
+        expect(response.parsed_body.map { |x| x['duration_minutes'] }.uniq).to eq([5])
+      end
+    end
+  end
 end
